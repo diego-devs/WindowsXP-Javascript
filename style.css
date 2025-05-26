@@ -11,7 +11,7 @@ body {
     width: 100vw;
     height: calc(100vh - 30px); /* Full height minus taskbar */
     position: relative;
-    background: url('icons/bliss.jpg') no-repeat center center; /* Optional Bliss wallpaper */
+    background: url('bliss.jpg') no-repeat center center; /* Optional Bliss wallpaper */
     background-size: cover;
     padding: 10px;
     box-sizing: border-box;

@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'notepad':
                 return {
                     title: 'Untitled - Notepad',
-                    icon: 'icons/notepad_icon.svg',
+                    icon: 'icons/notepad.svg',
                     width: '500px', height: '400px',
                     content: `<textarea class="notepad-textarea" spellcheck="false"></textarea>`,
                     init: (winEl) => { winEl.querySelector('textarea').focus(); }
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'calculator':
                 return {
                     title: 'Calculator',
-                    icon: 'icons/calculator_icon.svg',
+                    icon: 'icons/calculator.svg',
                     width: '240px', height: '320px', // Adjusted for new styles
                     content: `
                         <div class="calculator-app">
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'paint': // No change to config, just icon path
                 return {
                     title: 'Untitled - Paint',
-                    icon: 'icons/paint_icon.svg',
+                    icon: 'icons/paint.svg',
                     width: '600px', height: '450px',
                     content: `
                         <div class="paint-app">
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'mediaplayer': // No change to config, just icon path
                 return {
                     title: 'Windows Media Player',
-                    icon: 'icons/mediaplayer_icon.svg',
+                    icon: 'icons/media-player.svg',
                     width: '450px', height: '350px',
                     content: `
                         <div class="mediaplayer-app">
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'snake': // NEW APP
                 return {
                     title: 'Snake Game',
-                    icon: 'icons/snake_icon.svg',
+                    icon: 'icons/snake.svg',
                     width: '345px', // Canvas 300 + padding/border + score
                     height: '405px', // Canvas 300 + score display + padding/border + button
                     content: `
