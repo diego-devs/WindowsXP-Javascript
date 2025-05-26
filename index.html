@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows XP Clone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" data-app="notepad">
+            <img src="icons/notepad_icon.svg" alt="Notepad Icon"> <!-- Changed to svg -->
+            <span>Notepad</span>
+        </div>
+        <div class="desktop-icon" data-app="calculator">
+            <img src="icons/calculator_icon.svg" alt="Calculator Icon"> <!-- Changed to svg -->
+            <span>Calculator</span>
+        </div>
+        <div class="desktop-icon" data-app="paint">
+            <img src="icons/paint_icon.svg" alt="Paint Icon"> <!-- Changed to svg -->
+            <span>Paint</span>
+        </div>
+        <div class="desktop-icon" data-app="mediaplayer">
+            <img src="icons/mediaplayer_icon.svg" alt="Media Player Icon"> <!-- Changed to svg -->
+            <span>Media Player</span>
+        </div>
+        <div class="desktop-icon" data-app="snake"> <!-- Added Snake -->
+            <img src="icons/snake_icon.svg" alt="Snake Icon">
+            <span>Snake</span>
+        </div>
+
+        <!-- Windows will be appended here by JavaScript -->
+    </div>
+
+    <div id="start-menu" class="hidden">
+        <div class="start-menu-header">
+            <img src="icons/xp_icon.svg" alt="User" class="user-icon"> <!-- Changed to svg -->
+            <span class="username">User</span>
+        </div>
+        <ul class="start-menu-items">
+            <li data-app="paint"><img src="icons/paint_icon.svg" alt="Paint"> Paint</li> <!-- Changed to svg -->
+            <li data-app="mediaplayer"><img src="icons/mediaplayer_icon.svg" alt="Media Player"> Media Player</li> <!-- Changed to svg -->
+            <li data-app="notepad"><img src="icons/notepad_icon.svg" alt="Notepad"> Notepad</li> <!-- Changed to svg -->
+            <li data-app="calculator"><img src="icons/calculator_icon.svg" alt="Calculator"> Calculator</li> <!-- Changed to svg -->
+            <li data-app="snake"><img src="icons/snake_icon.svg" alt="Snake"> Snake</li> <!-- Added Snake -->
+            <hr>
+            <li id="shutdown-btn">Turn Off Computer...</li>
+        </ul>
+    </div>
+
+    <div id="taskbar">
+        <button id="start-button">
+            <img src="icons/start_icon.svg" alt="Start"> <!-- Changed to svg -->
+            <span>start</span>
+        </button>
+        <div id="taskbar-apps">
+            <!-- Active app buttons will go here -->
+        </div>
+        <div id="clock">12:00 PM</div>
+    </div>
+
+    <!-- Window Template (hidden) -->
+    <template id="window-template">
+        <div class="window">
+            <div class="window-title-bar">
+                <img src="icons/xp_icon.svg" alt="" class="window-icon"> <!-- Changed to svg -->
+                <span class="window-title">Window</span>
+                <div class="window-controls">
+                    <button class="minimize-btn" title="Minimize">_</button>
+                    <button class="maximize-btn" title="Maximize">[]</button>
+                    <button class="close-btn" title="Close">X</button>
+                </div>
+            </div>
+            <div class="window-content">
+                <!-- App-specific content goes here -->
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+body {
+    font-family: "Tahoma", "Geneva", sans-serif;
+    font-size: 11px;
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars on the body */
+    background-color: #3A6EA5; /* XP blue */
+    /* user-select: none; /* Prevent text selection during drag - MOVED */
+}
+
+#desktop {
+    width: 100vw;
+    height: calc(100vh - 30px); /* Full height minus taskbar */
+    position: relative;
+    background: url('icons/bliss.jpg') no-repeat center center; /* Optional Bliss wallpaper */
+    background-size: cover;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.desktop-icon {
+    width: 70px;
+    text-align: center;
+    padding: 10px 5px;
+    margin: 10px;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    cursor: pointer;
+    float: left; /* Or use Flexbox/Grid for better layout */
+}
+.desktop-icon img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    margin: 0 auto 5px;
+}
+.desktop-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+}
+
+
+/* --- Taskbar --- */
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to bottom, #245EDC 0%, #3F8CF5 9%, #408FF6 18%, #4F9FFB 58%, #317EF3 82%, #245EDC 100%);
+    border-top: 1px solid #6AA2F6;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+    z-index: 10000; /* Always on top */
+}
+
+#start-button {
+    background-color: #59BE5C; /* XP Green */
+    color: white;
+    border: 1px outset #A0D79F;
+    border-radius: 3px;
+    padding: 2px 10px 2px 5px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    text-transform: lowercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+#start-button img {
+    width: 20px; /* Adjusted for SVG */
+    height: 20px; /* Adjusted for SVG */
+    margin-right: 5px;
+}
+#start-button:active {
+    background-color: #4AA54C;
+    border-style: inset;
+}
+
+#taskbar-apps {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    overflow: hidden; /* Prevent too many buttons from breaking layout */
+}
+
+.taskbar-app-button {
+    background: linear-gradient(to bottom, #3D8AF4 0%, #5BA3F8 100%);
+    border: 1px outset #6AA2F6;
+    color: white;
+    padding: 2px 10px;
+    margin-right: 3px;
+    border-radius: 2px;
+    font-size: 11px;
+    max-width: 150px;
+    min-width: 50px; /* Ensure some width for icon */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    height: 22px;
+    box-sizing: border-box;
+    display: flex; /* For aligning icon and text */
+    align-items: center;
+}
+.taskbar-app-button.active {
+    background: linear-gradient(to bottom, #F9C650 0%, #F8B62B 100%);
+    border-color: #FDCF74;
+    border-style: inset;
+}
+.taskbar-app-button img {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    /* vertical-align: middle; /* Not needed with flex */
+}
+
+
+#clock {
+    background-color: #2B77DE;
+    border: 1px inset #1A4E94;
+    color: white;
+    padding: 3px 8px;
+    margin-left: auto; /* Pushes to the right */
+    font-size: 11px;
+    height: 18px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+/* --- Start Menu --- */
+#start-menu {
+    position: absolute;
+    bottom: 30px; /* Above taskbar */
+    left: 0;
+    width: 250px;
+    background-color: #EBF3FE;
+    border: 1px solid #082B84;
+    border-bottom: none;
+    box-shadow: 2px -2px 5px rgba(0,0,0,0.2);
+    z-index: 9999;
+}
+#start-menu.hidden {
+    display: none;
+}
+.start-menu-header {
+    background: linear-gradient(to bottom, #245EDC 0%, #3F8CF5 100%);
+    color: white;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+.user-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    border: 1px solid white;
+    background-color: #fff; /* Ensure SVG background if transparent areas */
+}
+.start-menu-items {
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+}
+.start-menu-items li {
+    padding: 6px 10px 6px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.start-menu-items li:hover {
+    background-color: #316AC5;
+    color: white;
+}
+.start-menu-items li img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.start-menu-items hr {
+    border: none;
+    border-top: 1px solid #A6BADE;
+    margin: 5px 0;
+}
+
+
+/* --- Window Styling --- */
+.window {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    min-width: 250px;
+    min-height: 150px;
+    background-color: #ECE9D8; /* XP window background */
+    border: 1px solid #0058A3;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px 6px 0 0; /* Rounded top corners */
+    overflow: hidden; /* Important for content not overflowing */
+}
+.window:focus-within { /* Highlight active window slightly, good for keyboard nav */
+    border-color: #0078D7;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+.window-title-bar {
+    background: linear-gradient(to bottom, #0058A3 0%, #0078D7 100%); /* XP Title bar blue */
+    color: white;
+    padding: 3px 5px;
+    cursor: move;
+    display: flex;
+    align-items: center;
+    height: 22px; /* Approx XP title bar height */
+    user-select: none; /* Prevent text selection on title bar */
+}
+.window-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.window-title {
+    font-weight: bold;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.window-controls button {
+    background-color: #D4D0C8; /* XP Button face */
+    border: 1px outset #FFFFFF;
+    color: black;
+    font-family: "Marlett", "Arial"; /* Marlett for symbols, Arial fallback */
+    font-size: 10px; /* Adjust for symbols */
+    width: 18px;
+    height: 16px;
+    padding: 0;
+    margin-left: 2px;
+    line-height: 16px; /* Vertically center content */
+    text-align: center;
+}
+.window-controls button:active {
+    border-style: inset;
+}
+.close-btn {
+    background-color: #E81123; /* Red for close */
+    color: white;
+    font-weight: bold;
+}
+.close-btn:hover {
+    background-color: #F1707A;
+}
+
+.window-content {
+    flex-grow: 1; /* Takes remaining space */
+    padding: 0; /* App specific padding */
+    overflow: auto; /* Scrollbars if content overflows */
+    background-color: white; /* Default content background */
+}
+
+/* App-specific styles */
+/* Notepad */
+.notepad-textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    resize: none;
+    padding: 5px;
+    box-sizing: border-box;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 12px;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+/* Calculator */
+.calculator-app {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ECE9D8; /* Standard app background */
+    height: 100%;
+    box-sizing: border-box;
+}
+.calculator-display {
+    width: calc(100% - 10px); /* Adjusted for padding */
+    box-sizing: border-box;
+    height: 35px;
+    background-color: #F0F8FF; /* Lighter display background */
+    border: 1px inset #7F9DB9;
+    text-align: right;
+    padding: 5px 8px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    overflow: hidden;
+    border-radius: 2px;
+}
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    width: calc(100% - 10px); /* Adjusted for padding */
+}
+.calculator-buttons button {
+    padding: 8px; /* Slightly smaller padding */
+    font-size: 13px; /* Slightly smaller font */
+    background-color: #D4D0C8;
+    border: 1px outset #FFFFFF;
+    border-radius: 2px;
+}
+.calculator-buttons button:active {
+    border-style: inset;
+    background-color: #c0c0c0;
+}
+.calculator-buttons .operator {
+    background-color: #C0C0C0;
+}
+.calculator-buttons .operator:active {
+    background-color: #b0b0b0;
+}
+.calculator-buttons .equals {
+    grid-column: span 2; /* Kept */
+    background-color: #A0A0A0;
+}
+.calculator-buttons .equals:active {
+    background-color: #909090;
+}
+
+
+/* Paint */
+.paint-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #C0C0C0; /* Classic Paint grey */
+}
+.paint-toolbar {
+    padding: 5px;
+    background-color: #ECE9D8;
+    border-bottom: 1px solid gray;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.paint-toolbar button, .paint-toolbar input[type="color"], .paint-toolbar input[type="number"] {
+    margin: 2px;
+    padding: 3px 5px;
+}
+.paint-toolbar label {
+    margin-left: 5px;
+    margin-right: 2px;
+}
+.paint-canvas-container {
+    flex-grow: 1;
+    overflow: auto; /* if canvas is larger than window */
+    background-color: #808080; /* Grey area around canvas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px; /* Space around canvas */
+}
+#paintCanvas {
+    border: 1px solid black;
+    background-color: white; /* Canvas paper color */
+    cursor: crosshair;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Media Player */
+.mediaplayer-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    height: 100%;
+    box-sizing: border-box;
+}
+#mediaElement {
+    width: 90%;
+    max-height: 70%;
+    margin-bottom: 10px;
+    background-color: black;
+}
+.media-controls button, .media-controls input {
+    margin: 0 5px;
+}
+.media-controls input[type="file"] {
+    color: black; /* For better visibility of default browser button */
+}
+
+/* Snake Game */
+.snake-game-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: #ECE9D8; /* XP app background */
+    height: 100%;
+    box-sizing: border-box;
+    user-select: none; /* Prevent text selection in game area */
+}
+#snakeCanvas {
+    border: 2px solid #0058A3; /* XP Blue border */
+    background-color: #C2E2C2; /* Light green grass for snake */
+}
+.snake-score {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+#snakeRestartBtn {
+    padding: 5px 10px;
+    background-color: #D4D0C8;
+    border: 1px outset #FFF;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+#snakeRestartBtn:active {
+    border-style: inset;
+}
+
+
+/* Minimized window class */
+.window.minimized {
+    display: none;
+}
